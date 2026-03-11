@@ -123,11 +123,6 @@ promotion:
     namespace: aro-hcp
     tag: latest
     tag_by_commit: true
-releases:
-  latest:
-    release:
-      channel: stable
-      version: "4.20"
 resources:
   '*':
     limits:
@@ -151,7 +146,6 @@ tests:
 - as: secrets-validation
   run_if_changed: ^(tooling/secret-sync|dev-infrastructure/data)/
   steps:
-    cluster_profile: aro-hcp-dev
     test:
     - ref: aro-hcp-secrets-validation
 - as: verify
@@ -200,52 +194,36 @@ tests:
   as: integration-e2e-parallel
   optional: true
   steps:
-    cluster_profile: aro-hcp-int
     env:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: int
       ARO_HCP_SUITE_NAME: integration/parallel
       LOCATION: uksouth
-    leases:
-    - count: 20
-      env: LEASED_MSI_CONTAINERS
-      resource_type: aro-hcp-test-msi-containers-int
     workflow: aro-hcp-e2e
 - always_run: false
   as: stage-e2e-parallel
   optional: true
   steps:
-    cluster_profile: aro-hcp-stg
     env:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: stg
       ARO_HCP_SUITE_NAME: stage/parallel
       LOCATION: uksouth
-    leases:
-    - count: 30
-      env: LEASED_MSI_CONTAINERS
-      resource_type: aro-hcp-test-msi-containers-stg
     workflow: aro-hcp-e2e
 - always_run: false
   as: prod-e2e-parallel
   optional: true
   steps:
-    cluster_profile: aro-hcp-prod
     env:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: prod
       ARO_HCP_SUITE_NAME: prod/parallel
       LOCATION: uksouth
-    leases:
-    - count: 15
-      env: LEASED_MSI_CONTAINERS
-      resource_type: aro-hcp-test-msi-containers-prod
     workflow: aro-hcp-e2e
 - always_run: true
   as: e2e-parallel
   skip_if_only_changed: ^(?:action\.yml|CODEOWNERS|docs/|LICENSE|(?:generate-repo|generate-tag|get-digest|get-tag-sha|svc-deploy)\.sh|\.(?:bingo|cursor|devcontainer|github|vscode)/|\.(?:editorconfig|gitattributes|gitguardian\.yaml|gitleaks\.toml|golangci\.yml|mega-linter\.yml|yamlfmt\.yaml|yamllint\.yml)$|.*\.md$)$
   steps:
-    cluster_profile: aro-hcp-dev
     env:
       ARO_HCP_CLOUD: dev
       ARO_HCP_DEPLOY_ENV: prow
@@ -255,13 +233,8 @@ tests:
   postsubmit: true
   run_if_changed: ^(?:config/config\.yaml|observability/observability\.yaml|dev-infrastructure/.*)$
   steps:
-    cluster_profile: aro-hcp-dev
     env:
       LOCATION: westus3
-    leases:
-    - count: 1
-      env: LEASED_GLOBAL_PIPELINE_RESOURCE
-      resource_type: aro-hcp-dev-global-pipeline-quota-slice
     test:
     - ref: aro-hcp-provision-global-pipeline
 zz_generated_metadata:
