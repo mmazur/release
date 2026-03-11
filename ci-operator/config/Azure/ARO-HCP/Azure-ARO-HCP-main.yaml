@@ -124,11 +124,6 @@ promotion:
     namespace: aro-hcp
     tag: latest
     tag_by_commit: true
-releases:
-  latest:
-    release:
-      channel: stable
-      version: "4.20"
 resources:
   '*':
     limits:
