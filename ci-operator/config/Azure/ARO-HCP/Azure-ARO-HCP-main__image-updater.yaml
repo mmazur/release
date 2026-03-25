@@ -54,9 +54,11 @@ resources:
 tests:
 - as: image-updater-tooling
   cron: 0 6,14,22 * * 1-5
+  node_architecture: amd64
   steps:
     env:
       VERBOSITY: "0"
+    node_architecture: amd64
     test:
     - ref: aro-hcp-automation-image-update
 zz_generated_metadata:

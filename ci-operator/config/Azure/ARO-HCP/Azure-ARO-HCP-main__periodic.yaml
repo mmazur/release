@@ -20,38 +20,49 @@ resources:
 tests:
 - as: delete-expired-kusto-role-assignments
   cron: 0 4 * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-dev
+    node_architecture: amd64
     test:
     - ref: aro-hcp-deprovision-kusto-role-assignments
 - as: delete-expired-development-resource-groups
   cron: 7,37 * * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-dev
     env:
       CLEANUP_MODE: no-rp
+    node_architecture: amd64
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: delete-expired-integration-resource-groups
   cron: 7,37 * * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-int
+    node_architecture: amd64
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: delete-expired-stage-resource-groups
   cron: 7,37 * * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-stg
+    node_architecture: amd64
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: delete-expired-prod-resource-groups
   cron: 7,37 * * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-prod
+    node_architecture: amd64
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: integration-e2e-parallel
   cron: 0 0 1 1 *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-int
     env:
@@ -63,9 +74,11 @@ tests:
     - count: 20
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-int
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 - as: stage-e2e-parallel
   cron: 0 2 * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-stg
     env:
@@ -77,9 +90,11 @@ tests:
     - count: 30
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-stg
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 - as: prod-e2e-parallel
   cron: 0 2 * * *
+  node_architecture: amd64
   steps:
     cluster_profile: aro-hcp-prod
     env:
@@ -91,6 +106,7 @@ tests:
     - count: 15
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-prod
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 zz_generated_metadata:
   branch: main

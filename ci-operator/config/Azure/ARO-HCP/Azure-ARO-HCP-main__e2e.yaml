@@ -49,6 +49,7 @@ resources:
       memory: 10Gi
 tests:
 - as: integration-e2e-parallel
+  node_architecture: amd64
   postsubmit: true
   run_if_changed: ^$
   steps:
@@ -62,8 +63,10 @@ tests:
     - count: 20
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-int
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 - as: stage-e2e-parallel
+  node_architecture: amd64
   postsubmit: true
   run_if_changed: ^$
   steps:
@@ -77,8 +80,10 @@ tests:
     - count: 30
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-stg
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 - as: prod-e2e-parallel
+  node_architecture: amd64
   postsubmit: true
   run_if_changed: ^$
   steps:
@@ -92,6 +97,7 @@ tests:
     - count: 15
       env: LEASED_MSI_CONTAINERS
       resource_type: aro-hcp-test-msi-containers-prod
+    node_architecture: amd64
     workflow: aro-hcp-e2e
 zz_generated_metadata:
   branch: main
