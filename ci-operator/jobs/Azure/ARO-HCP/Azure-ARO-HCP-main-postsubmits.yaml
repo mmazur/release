@@ -71,6 +71,7 @@ postsubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-int
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-int
       ci-operator.openshift.io/variant: e2e
@@ -160,6 +161,7 @@ postsubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-prod
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-prod
       ci-operator.openshift.io/variant: e2e
@@ -249,6 +251,7 @@ postsubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-stg
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-stg
       ci-operator.openshift.io/variant: e2e
@@ -338,6 +341,7 @@ postsubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-dev
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
       ci.openshift.io/generator: prowgen

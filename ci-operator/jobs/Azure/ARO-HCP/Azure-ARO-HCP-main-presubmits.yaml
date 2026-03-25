@@ -11,6 +11,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-api-validation
@@ -140,6 +141,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-bicep-lint
@@ -211,6 +213,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-config-change-detection
@@ -338,6 +341,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-dev
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
       ci.openshift.io/generator: prowgen
@@ -534,6 +538,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       capability/nested-podman: nested-podman
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -605,6 +610,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-int
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-int
       ci.openshift.io/generator: prowgen
@@ -696,6 +702,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-lint
@@ -766,6 +773,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       capability/nested-podman: nested-podman
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -837,6 +845,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-observability-prometheus
@@ -908,6 +917,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-prod
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-prod
       ci.openshift.io/generator: prowgen
@@ -999,6 +1009,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-dev
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
       ci.openshift.io/generator: prowgen
@@ -1082,6 +1093,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci-operator.openshift.io/cloud: aro-hcp-stg
       ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-stg
       ci.openshift.io/generator: prowgen
@@ -1173,6 +1185,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-test-unit
@@ -1243,6 +1256,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
+      capability/amd64: amd64
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-verify
