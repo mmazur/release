@@ -22,7 +22,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=api-validation
         command:
         - ci-operator
@@ -41,9 +40,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -58,9 +54,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -151,7 +144,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=bicep-lint
         command:
         - ci-operator
@@ -170,9 +162,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -187,9 +176,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -221,7 +207,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=config-change-detection
         command:
         - ci-operator
@@ -240,9 +225,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -257,9 +239,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -338,8 +317,6 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aro-hcp-dev
-      ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-e2e-parallel
@@ -350,9 +327,7 @@ presubmits:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=e2e-parallel
         command:
         - ci-operator
@@ -371,12 +346,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -391,15 +360,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -545,7 +505,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=integration
         command:
         - ci-operator
@@ -564,9 +523,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -581,9 +537,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -605,8 +558,6 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aro-hcp-int
-      ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-int
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-integration-e2e-parallel
@@ -625,9 +576,7 @@ presubmits:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=integration-e2e-parallel
         command:
         - ci-operator
@@ -646,12 +595,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -666,15 +609,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -706,7 +640,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=lint
         command:
         - ci-operator
@@ -725,9 +658,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -742,9 +672,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -777,7 +704,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=mega-linter
         command:
         - ci-operator
@@ -796,9 +722,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -813,9 +736,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -848,7 +768,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=observability-prometheus
         command:
         - ci-operator
@@ -867,9 +786,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -884,9 +800,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -908,8 +821,6 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aro-hcp-prod
-      ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-prod
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-prod-e2e-parallel
@@ -928,9 +839,7 @@ presubmits:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=prod-e2e-parallel
         command:
         - ci-operator
@@ -949,12 +858,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -969,15 +872,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -999,8 +893,6 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aro-hcp-dev
-      ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-secrets-validation
@@ -1011,9 +903,7 @@ presubmits:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=secrets-validation
         command:
         - ci-operator
@@ -1032,12 +922,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -1052,15 +936,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -1082,8 +957,6 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/cloud: aro-hcp-stg
-      ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-stg
       ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-Azure-ARO-HCP-main-stage-e2e-parallel
@@ -1102,9 +975,7 @@ presubmits:
       - args:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-        - --lease-server-credentials-file=/etc/boskos/credentials
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=stage-e2e-parallel
         command:
         - ci-operator
@@ -1123,12 +994,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/boskos
-          name: boskos
-          readOnly: true
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -1143,15 +1008,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: boskos
-        secret:
-          items:
-          - key: credentials
-            path: credentials
-          secretName: boskos-credentials
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -1183,7 +1039,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=test-unit
         command:
         - ci-operator
@@ -1202,9 +1057,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -1219,9 +1071,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher
@@ -1253,7 +1102,6 @@ presubmits:
         - --gcs-upload-secret=/secrets/gcs/service-account.json
         - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
         - --report-credentials-file=/etc/report/credentials
-        - --secret-dir=/secrets/ci-pull-credentials
         - --target=verify
         command:
         - ci-operator
@@ -1272,9 +1120,6 @@ presubmits:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /secrets/ci-pull-credentials
-          name: ci-pull-credentials
-          readOnly: true
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
@@ -1289,9 +1134,6 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
-      - name: ci-pull-credentials
-        secret:
-          secretName: ci-pull-credentials
       - name: manifest-tool-local-pusher
         secret:
           secretName: manifest-tool-local-pusher

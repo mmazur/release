@@ -81,8 +81,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-dev
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -92,9 +90,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=delete-expired-development-resource-groups
       - --variant=periodic
       command:
@@ -114,12 +110,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -134,15 +124,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -163,8 +144,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-int
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-int
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -182,9 +161,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=delete-expired-integration-resource-groups
       - --variant=periodic
       command:
@@ -204,12 +181,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -224,15 +195,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -253,8 +215,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-dev
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-dev
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -264,9 +224,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=delete-expired-kusto-role-assignments
       - --variant=periodic
       command:
@@ -286,12 +244,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -306,15 +258,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -335,8 +278,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-prod
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-prod
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -354,9 +295,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=delete-expired-prod-resource-groups
       - --variant=periodic
       command:
@@ -376,12 +315,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -396,15 +329,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -425,8 +349,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-stg
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-stg
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -444,9 +366,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=delete-expired-stage-resource-groups
       - --variant=periodic
       command:
@@ -466,12 +386,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -486,15 +400,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -515,8 +420,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-int
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-int
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -534,9 +437,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=integration-e2e-parallel
       - --variant=periodic
       command:
@@ -556,12 +457,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -576,15 +471,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -605,8 +491,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-prod
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-prod
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -624,9 +508,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=prod-e2e-parallel
       - --variant=periodic
       command:
@@ -646,12 +528,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -666,15 +542,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
@@ -695,8 +562,6 @@ periodics:
     org: Azure
     repo: ARO-HCP
   labels:
-    ci-operator.openshift.io/cloud: aro-hcp-stg
-    ci-operator.openshift.io/cloud-cluster-profile: aro-hcp-stg
     ci-operator.openshift.io/variant: periodic
     ci.openshift.io/generator: prowgen
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
@@ -714,9 +579,7 @@ periodics:
     - args:
       - --gcs-upload-secret=/secrets/gcs/service-account.json
       - --image-import-pull-secret=/etc/pull-secret/.dockerconfigjson
-      - --lease-server-credentials-file=/etc/boskos/credentials
       - --report-credentials-file=/etc/report/credentials
-      - --secret-dir=/secrets/ci-pull-credentials
       - --target=stage-e2e-parallel
       - --variant=periodic
       command:
@@ -736,12 +599,6 @@ periodics:
         requests:
           cpu: 10m
       volumeMounts:
-      - mountPath: /etc/boskos
-        name: boskos
-        readOnly: true
-      - mountPath: /secrets/ci-pull-credentials
-        name: ci-pull-credentials
-        readOnly: true
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
@@ -756,15 +613,6 @@ periodics:
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
-    - name: boskos
-      secret:
-        items:
-        - key: credentials
-          path: credentials
-        secretName: boskos-credentials
-    - name: ci-pull-credentials
-      secret:
-        secretName: ci-pull-credentials
     - name: manifest-tool-local-pusher
       secret:
         secretName: manifest-tool-local-pusher
