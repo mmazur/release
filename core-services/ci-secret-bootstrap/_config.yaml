@@ -1121,19 +1121,19 @@ secret_configs:
   - cluster_groups:
     - non_app_ci
     name: cluster-secrets-aro-hcp-int
-    namespace: ci
+    namespace: test-credentials
   - cluster_groups:
     - non_app_ci
     name: cluster-secrets-aro-hcp-stg
-    namespace: ci
+    namespace: test-credentials
   - cluster_groups:
     - non_app_ci
     name: cluster-secrets-aro-hcp-prod
-    namespace: ci
+    namespace: test-credentials
   - cluster_groups:
     - non_app_ci
     name: cluster-secrets-aro-hcp-dev
-    namespace: ci
+    namespace: test-credentials
   - cluster_groups:
     - non_app_ci
     name: cluster-secrets-rosa-regional-platform-int

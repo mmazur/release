@@ -52,6 +52,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: int
       ARO_HCP_SUITE_NAME: integration/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: int
     workflow: aro-hcp-e2e
 - as: stage-e2e-parallel
   postsubmit: true
@@ -62,6 +63,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: stg
       ARO_HCP_SUITE_NAME: stage/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: stg
     workflow: aro-hcp-e2e
 - as: prod-e2e-parallel
   postsubmit: true
@@ -72,6 +74,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: prod
       ARO_HCP_SUITE_NAME: prod/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: prod
     workflow: aro-hcp-e2e
 zz_generated_metadata:
   branch: main

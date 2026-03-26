@@ -28,16 +28,22 @@ tests:
 - as: delete-expired-integration-resource-groups
   cron: 7,37 * * * *
   steps:
+    env:
+      VAULT_SECRET_PROFILE: int
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: delete-expired-stage-resource-groups
   cron: 7,37 * * * *
   steps:
+    env:
+      VAULT_SECRET_PROFILE: stg
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: delete-expired-prod-resource-groups
   cron: 7,37 * * * *
   steps:
+    env:
+      VAULT_SECRET_PROFILE: prod
     test:
     - ref: aro-hcp-deprovision-expired-resource-groups
 - as: integration-e2e-parallel
@@ -48,6 +54,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: int
       ARO_HCP_SUITE_NAME: integration/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: int
     workflow: aro-hcp-e2e
 - as: stage-e2e-parallel
   cron: 0 2 * * *
@@ -57,6 +64,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: stg
       ARO_HCP_SUITE_NAME: stage/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: stg
     workflow: aro-hcp-e2e
 - as: prod-e2e-parallel
   cron: 0 2 * * *
@@ -66,6 +74,7 @@ tests:
       ARO_HCP_DEPLOY_ENV: prod
       ARO_HCP_SUITE_NAME: prod/parallel
       LOCATION: uksouth
+      VAULT_SECRET_PROFILE: prod
     workflow: aro-hcp-e2e
 zz_generated_metadata:
   branch: main
