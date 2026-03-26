@@ -1,0 +1,12 @@
+ref:
+  as: aro-hcp-lease-release
+  from: aro-hcp-e2e-tools
+  commands: aro-hcp-lease-release-commands.sh
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+  best_effort: true
+  timeout: 5m
+  documentation: |-
+    Release all leases acquired by aro-hcp-lease-acquire via the lease proxy.

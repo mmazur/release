@@ -51,6 +51,9 @@ tests:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: int
       ARO_HCP_SUITE_NAME: integration/parallel
+      LEASE1_TYPE: aro-hcp-int-quota-slice
+      LEASE2_TYPE: aro-hcp-test-msi-containers-int
+      LEASE2_COUNT: "20"
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: int
     workflow: aro-hcp-e2e
@@ -62,6 +65,9 @@ tests:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: stg
       ARO_HCP_SUITE_NAME: stage/parallel
+      LEASE1_TYPE: aro-hcp-stg-quota-slice
+      LEASE2_TYPE: aro-hcp-test-msi-containers-stg
+      LEASE2_COUNT: "30"
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: stg
     workflow: aro-hcp-e2e
@@ -73,6 +79,9 @@ tests:
       ARO_HCP_CLOUD: public
       ARO_HCP_DEPLOY_ENV: prod
       ARO_HCP_SUITE_NAME: prod/parallel
+      LEASE1_TYPE: aro-hcp-prod-quota-slice
+      LEASE2_TYPE: aro-hcp-test-msi-containers-prod
+      LEASE2_COUNT: "15"
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: prod
     workflow: aro-hcp-e2e

@@ -1,0 +1,24 @@
+ref:
+  as: aro-hcp-lease-acquire
+  from: aro-hcp-e2e-tools
+  commands: aro-hcp-lease-acquire-commands.sh
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+  env:
+    - name: LEASE1_TYPE
+      documentation: "Primary lease resource type (e.g., aro-hcp-dev-quota-slice)."
+    - name: LEASE1_COUNT
+      default: "1"
+      documentation: "Number of resources to acquire for LEASE1_TYPE."
+    - name: LEASE2_TYPE
+      default: ""
+      documentation: "Optional second lease resource type (e.g., aro-hcp-test-msi-containers-dev)."
+    - name: LEASE2_COUNT
+      default: "1"
+      documentation: "Number of resources to acquire for LEASE2_TYPE."
+  timeout: 10m
+  documentation: |-
+    Acquire leases via the lease proxy. Saves lease names to SHARED_DIR for
+    release by aro-hcp-lease-release.
