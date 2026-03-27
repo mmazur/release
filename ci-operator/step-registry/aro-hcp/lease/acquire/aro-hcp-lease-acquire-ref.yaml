@@ -18,6 +18,12 @@ ref:
     - name: LEASE2_COUNT
       default: "1"
       documentation: "Number of resources to acquire for LEASE2_TYPE."
+    - name: LEASE1_FILE
+      default: ""
+      documentation: "If set, write LEASE1 names (CSV) to $SHARED_DIR/$LEASE1_FILE."
+    - name: LEASE2_FILE
+      default: ""
+      documentation: "If set, write LEASE2 names (CSV) to $SHARED_DIR/$LEASE2_FILE."
   timeout: 10m
   documentation: |-
     Acquire leases via the lease proxy. Saves lease names to SHARED_DIR for

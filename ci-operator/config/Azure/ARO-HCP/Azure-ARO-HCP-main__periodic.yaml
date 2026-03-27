@@ -81,6 +81,7 @@ tests:
       ARO_HCP_SUITE_NAME: integration/parallel
       LEASE1_TYPE: aro-hcp-int-quota-slice
       LEASE2_COUNT: "20"
+      LEASE2_FILE: leases-test-msi-containers
       LEASE2_TYPE: aro-hcp-test-msi-containers-int
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: int
@@ -94,6 +95,7 @@ tests:
       ARO_HCP_SUITE_NAME: stage/parallel
       LEASE1_TYPE: aro-hcp-stg-quota-slice
       LEASE2_COUNT: "30"
+      LEASE2_FILE: leases-test-msi-containers
       LEASE2_TYPE: aro-hcp-test-msi-containers-stg
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: stg
@@ -107,6 +109,7 @@ tests:
       ARO_HCP_SUITE_NAME: prod/parallel
       LEASE1_TYPE: aro-hcp-prod-quota-slice
       LEASE2_COUNT: "15"
+      LEASE2_FILE: leases-test-msi-containers
       LEASE2_TYPE: aro-hcp-test-msi-containers-prod
       LOCATION: uksouth
       VAULT_SECRET_PROFILE: prod

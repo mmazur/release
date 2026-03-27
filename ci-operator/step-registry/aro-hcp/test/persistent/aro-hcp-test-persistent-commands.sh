@@ -5,7 +5,7 @@ set -o pipefail
 set -o xtrace
 
 export LEASED_MSI_CONTAINERS
-LEASED_MSI_CONTAINERS=$(tr '\n' ' ' < "${SHARED_DIR}/leases-aro-hcp-test-msi-containers-${VAULT_SECRET_PROFILE}")
+LEASED_MSI_CONTAINERS=$(tr ',' ' ' < "${SHARED_DIR}/leases-test-msi-containers")
 
 export CLUSTER_PROFILE_DIR="/var/run/aro-hcp-${VAULT_SECRET_PROFILE}"
 

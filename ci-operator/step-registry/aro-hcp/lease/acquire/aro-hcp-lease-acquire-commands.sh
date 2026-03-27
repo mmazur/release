@@ -11,26 +11,20 @@ fi
 # shellcheck disable=SC1090
 source "$LEASE_PROXY_CLIENT_SH"
 
-extract_lease_names() {
-    local lease_type="$1"
-    local out="${SHARED_DIR}/leases-${lease_type}"
-    grep "^${lease_type}-" "${SHARED_DIR}/leases" > "$out" || true
-    if [[ -s "$out" ]]; then
-        echo "Wrote lease names for ${lease_type} to ${out}"
-    else
-        rm -f "$out"
-        echo "No matching lease names for ${lease_type} in ${SHARED_DIR}/leases, removed ${out}"
-    fi
-}
-
 echo "Acquiring lease: ${LEASE1_TYPE} (count: ${LEASE1_COUNT})"
-lease__acquire --type="${LEASE1_TYPE}" --count="${LEASE1_COUNT}" --scope=test
-extract_lease_names "${LEASE1_TYPE}"
+leases_handle=$(lease__acquire --type="${LEASE1_TYPE}" --count="${LEASE1_COUNT}" --scope=test)
+if [[ -n "${LEASE1_FILE}" ]]; then
+    lease__cat --handle="$leases_handle" --format=csv >> "${SHARED_DIR}/${LEASE1_FILE}"
+    echo "Wrote lease names to ${SHARED_DIR}/${LEASE1_FILE}"
+fi
 
 if [[ -n "${LEASE2_TYPE}" ]]; then
     echo "Acquiring lease: ${LEASE2_TYPE} (count: ${LEASE2_COUNT})"
-    lease__acquire --type="${LEASE2_TYPE}" --count="${LEASE2_COUNT}" --scope=test
-    extract_lease_names "${LEASE2_TYPE}"
+    leases_handle=$(lease__acquire --type="${LEASE2_TYPE}" --count="${LEASE2_COUNT}" --scope=test)
+    if [[ -n "${LEASE2_FILE}" ]]; then
+        lease__cat --handle="$leases_handle" --format=csv >> "${SHARED_DIR}/${LEASE2_FILE}"
+        echo "Wrote lease names to ${SHARED_DIR}/${LEASE2_FILE}"
+    fi
 fi
 
 echo "Leases acquired"
